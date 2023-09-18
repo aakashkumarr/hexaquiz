@@ -1,0 +1,19 @@
+<div class="auth-container" style="display: grid; place-items: center; width: 100%; min-height: 80vh;height: auto;max-height: 100%;"
+>
+
+    <form name="loginForm" style="display: flex;flex-direction: column;align-items: center; width: 30%;;" class="form-card" ng-submit="$ctrl.login()">
+        <h1 class="title">Login</h1>
+        <div class="form-control">
+            <input required ng-model="$ctrl.email" type="email" name="email" placeholder="Email" id="email">
+            
+        </div>
+        <span class="error" ng-show="loginForm.email.$error.required">email is required</span> 
+        <span class="error" ng-show="loginForm.email.$error.email">email is invalid</span> 
+        <div class="form-control">
+            <input ng-model="$ctrl.password" ng-pattern="/.{6,}/" type="password" placeholder="Password" name="password" id="password" required>
+        </div>
+        <span class="error" ng-show="loginForm.password.$error.required">Password is required</span> 
+        <span class="error" ng-show="loginForm.password.$error.pattern">password must be 6 charactors or more</span> 
+        <button ng-disabled="loginForm.$invalid"  class="quiz-btn">Login</button>
+    </form>
+</div>

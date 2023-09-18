@@ -1,0 +1,13 @@
+<nav class="nav-container">
+  <h2 class="nav-title">{{$ctrl.navTitle}}</h2>
+
+  <ul class="nav-items">
+    <li><a href="#!/">Home</a></li>
+    <li><a>Category</a></li>
+    <li><a>Dashboard</a></li>
+    <li ng-hide="$ctrl.hideAuth"><a href="#!/login">Login</a></li>
+    <li ng-hide="$ctrl.hideAuth"><a href="#!/signup">Sign Up</a></li>
+    <li ng-show="$ctrl.hideAuth" ng-click="$ctrl.logout()"><a>logout</a></li>
+    <div ng-include="'components/search.htm'"></div>
+  </ul>
+</nav>

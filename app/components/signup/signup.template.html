@@ -1,0 +1,73 @@
+<div
+  class="auth-container"
+  style="display: grid; place-items: center; width: 100%; min-height: 80vh;height: auto;max-height: 100%;"
+>
+  <form
+    name="signUpForm"
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 30%;
+    "
+    ng-submit="$ctrl.signUp()"
+    class="form-card"
+  >
+    <h1 class="title">Sign up</h1>
+    <div class="form-control">
+      <input
+        name="firstName"
+        type="text"
+        placeholder="First Name"
+        ng-model="$ctrl.firstName"
+        required
+      />
+    </div>
+    <div class="form-control">
+      <input
+        name="lastName"
+        type="text"
+        placeholder="Last Name"
+        ng-model="$ctrl.lastName"
+        required
+      />
+    </div>
+    <div class="form-control">
+      <input
+        name="email"
+        type="email"
+        placeholder="Email"
+        ng-model="$ctrl.email"
+        required
+      />
+    </div>
+    <div class="form-control">
+      <input name="password" type="password" placeholder=Password" id="password"
+      ng-model="$ctrl.password" required>
+    </div>
+    <div class="form-control">
+      <input
+        name="confirmPassword"
+        type="password"
+        ng-model="$ctrl.confirmPassword"
+        placeholder="Confirm Password"
+        id="password"
+        required
+      />
+    </div>
+    <div
+      style="
+        background-color: rgba(255, 0, 0, 0.288);
+        color: rgb(235, 119, 119);
+        padding-inline: 1rem;
+        padding-block: 0.5rem;
+      "
+      ng-show="$ctrl.serverErr"
+    >
+      {{$ctrl.serverErr}}
+    </div>
+    <button type="submit" ng-disabled="signUpForm.$invalid" class="quiz-btn">
+      Sign Up
+    </button>
+  </form>
+</div>

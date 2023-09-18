@@ -1,0 +1,60 @@
+
+<div style="height: 80vh;" class="container-flex">
+  <div class="quiz-box">
+    <div ng-show="$ctrl.isLoading" ng-include="'components/UI/dot-spinner.htm'"></div>
+    <h2 style="align-self: self-start;justify-self: self-start;" ng-hide="$ctrl.isLoading">{{$ctrl.currentIndex+1}}) {{$ctrl.currentQ.question}}</h2>
+    <ul  style="align-self: self-start;justify-self: self-start;" ng-hide="$ctrl.isLoading" class="options-list">
+        <li
+          ng-repeat="(key,value) in $ctrl.currentQ.answers track by key"
+          ng-show="value"
+          ng-click="$ctrl.handleChange($event,key)"
+          ng-disabled="$ctrl.isSubmit"
+          ng-class="[{'correct':$ctrl.correctAnswers[key+'_correct']=='true' && $ctrl.isSubmit}]"
+        >
+        <div class="alpha-index" ng-class="[{'checked':$ctrl.userAnswers[key]}]"  >{{key.split('_')[1]}}</div>  <input ng-change="$ctrl.handleChange($event,key)" ng-disabled="$ctrl.isSubmit" ng-model="$ctrl.userAnswers[key]" type="checkbox" />{{value}}
+        </li>
+      </ul> 
+  </div>
+ 
+  <div
+    style="
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      position: absolute;
+      bottom: 0px;
+      padding-inline: 10px;
+      padding-block: 4px;
+      margin-inline: 20px;
+      width: 100%;
+      background-color: rgba(255,255,255,0.5);
+  backdrop-filter:blur(10px);
+    "
+  >
+  <button style="align-self: flex-start;" ng-show="$ctrl.isSubmit" class="quiz-btn gap-in-1" ng-click="$ctrl.showScore=true">
+   Show Score
+  </button>
+    <button ng-show="$ctrl.currentIndex>0" class="quiz-btn gap-in-1" ng-click="$ctrl.prev()">
+      <i class="fa-solid fa-arrow-left"></i> Prev
+    </button>
+    <button ng-hide="$ctrl.currentIndex==($ctrl.list.length-1)" class="quiz-btn gap-in-1" ng-click="$ctrl.next()">
+      <i class="fa-solid fa-arrow-right"></i> Next
+    </button>
+    <button ng-disabled="$ctrl.isSubmit" ng-show="$ctrl.currentIndex==($ctrl.list.length-1)" class="quiz-btn gap-in-1" ng-click="$ctrl.submit()">
+     Submit
+    </button>
+  </div>
+</div>
+
+<div 
+ng-show="$ctrl.showScore"
+ ng-click="$ctrl.showScore=false"  class="backdrop">
+<div class="dailog">
+  <div style="--progress:{{($ctrl.score/$ctrl.list.length)*100}}%;--progress-color:green;" class="progress-bar">
+    <!-- <progress value="75" min="0" max="100" style="visibility:hidden;height:0;width:0;">75%</progress> -->
+    {{($ctrl.score/$ctrl.list.length)*100}}%  
+  </div>
+<h3 style="font-family: Verdana, Geneva, Tahoma, sans-serif;">You've scored {{($ctrl.score/$ctrl.list.length)*100}}</h3>
+</div>
+</div>

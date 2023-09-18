@@ -1,0 +1,21 @@
+<div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+    <h2 class="menu-title" >Trending Topics</h2>
+    <div tyle="display: flex; flex-direction: row; justify-content: flex-end; align-items: center;">
+        <button class="btn gap-in-1" ng-click="$ctrl.scrollLeft()">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <button class="btn gap-in-1" ng-click="$ctrl.scrollRight()">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+    </div>
+ 
+  </div>
+<div id="list1" class="list-row">
+  <div ng-repeat="tag in $ctrl.tags track by $index" class="card">
+    <h2>{{tag}}</h2>
+    <p>Popularity: 4.5</p>
+    <a class="link-btn" href="#!quiz/{{tag}}">Start Quiz</a>
+  </div>
+
+</div>
+
